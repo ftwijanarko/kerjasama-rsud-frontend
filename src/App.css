@@ -61,6 +61,7 @@ a { text-decoration: none; color: inherit; }
   padding: 20px;
   text-align: center;
   border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: relative;
 }
 
 .sidebar-header img {
@@ -521,6 +522,12 @@ table tbody tr:hover {
   .sidebar.open {
     transform: translateX(0);
   }
+  .sidebar-close {
+    display: flex;
+  }
+  .sidebar-toggle {
+    display: flex;
+  }
   .main-content {
     margin-left: 0;
     padding: 15px;
@@ -536,4 +543,47 @@ table tbody tr:hover {
     align-items: flex-start;
     gap: 10px;
   }
+}
+
+/* ===== Sidebar overlay (mobile) ===== */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+}
+
+@media (max-width: 768px) {
+  .sidebar-overlay {
+    display: block;
+  }
+}
+
+/* ===== Hamburger toggle button ===== */
+.sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: var(--primary);
+  padding: 0;
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+/* ===== Sidebar close button ===== */
+.sidebar-close {
+  display: none;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1em;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }

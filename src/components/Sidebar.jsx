@@ -5,7 +5,7 @@ import {
   FiLogOut, FiList, FiUserCheck, FiClipboard
 } from 'react-icons/fi';
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, onClose }) {
   const { user, logout, hasRole } = useAuth();
   const navigate = useNavigate();
 
@@ -15,25 +15,26 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar${isOpen ? ' open' : ''}`}>
       <div className="sidebar-header">
         <img src="/logorssmweb.png" alt="Logo RSUD" />
         <h3>Reminder Kerjasama</h3>
+        <button className="sidebar-close" onClick={onClose} aria-label="Tutup menu">✕</button>
       </div>
 
       <nav className="sidebar-nav">
         <div className="sidebar-section">Menu Utama</div>
-        <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'active' : ''}>
+        <NavLink to="/dashboard" onClick={onClose} className={({ isActive }) => isActive ? 'active' : ''}>
           <span className="nav-icon"><FiHome /></span> Dashboard
         </NavLink>
-        <NavLink to="/kerjasama" className={({ isActive }) => isActive ? 'active' : ''}>
+        <NavLink to="/kerjasama" onClick={onClose} className={({ isActive }) => isActive ? 'active' : ''}>
           <span className="nav-icon"><FiFileText /></span> Kerjasama
         </NavLink>
 
         {hasRole('MAKER', 'ADMIN') && (
           <>
             <div className="sidebar-section">Master Data</div>
-            <NavLink to="/mitra" className={({ isActive }) => isActive ? 'active' : ''}>
+            <NavLink to="/mitra" onClick={onClose} className={({ isActive }) => isActive ? 'active' : ''}>
               <span className="nav-icon"><FiUsers /></span> Mitra
             </NavLink>
           </>
@@ -42,7 +43,7 @@ export default function Sidebar() {
         {hasRole('CHECKER', 'ADMIN') && (
           <>
             <div className="sidebar-section">Monitoring</div>
-            <NavLink to="/audit-trail" className={({ isActive }) => isActive ? 'active' : ''}>
+            <NavLink to="/audit-trail" onClick={onClose} className={({ isActive }) => isActive ? 'active' : ''}>
               <span className="nav-icon"><FiClipboard /></span> Audit Trail
             </NavLink>
           </>
@@ -51,10 +52,10 @@ export default function Sidebar() {
         {hasRole('ADMIN') && (
           <>
             <div className="sidebar-section">Administrasi</div>
-            <NavLink to="/users" className={({ isActive }) => isActive ? 'active' : ''}>
+            <NavLink to="/users" onClick={onClose} className={({ isActive }) => isActive ? 'active' : ''}>
               <span className="nav-icon"><FiUserCheck /></span> Manajemen User
             </NavLink>
-            <NavLink to="/settings" className={({ isActive }) => isActive ? 'active' : ''}>
+            <NavLink to="/settings" onClick={onClose} className={({ isActive }) => isActive ? 'active' : ''}>
               <span className="nav-icon"><FiSettings /></span> Pengaturan
             </NavLink>
           </>
