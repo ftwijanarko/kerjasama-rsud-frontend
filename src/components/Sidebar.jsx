@@ -19,7 +19,7 @@ export default function Sidebar({ isOpen, onClose }) {
       <div className="sidebar-header">
         <img src="/logorssmweb.png" alt="Logo RSUD" />
         <h3>Reminder Kerjasama</h3>
-        <button className="sidebar-close" onClick={onClose} aria-label="Tutup menu">✕</button>
+        <button type="button" className="sidebar-close" onClick={onClose} aria-label="Tutup menu">✕</button>
       </div>
 
       <nav className="sidebar-nav">

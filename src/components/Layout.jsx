@@ -12,6 +12,7 @@ export default function Layout({ children }) {
       )}
       <main className="main-content">
         <button
+          type="button"
           className="sidebar-toggle"
           onClick={() => setSidebarOpen(true)}
           aria-label="Buka menu"
